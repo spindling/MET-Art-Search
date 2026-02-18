@@ -1,0 +1,12 @@
+{
+  "name": "4wp3_a2",
+  "version": "1.0.0",
+  "description": "Web application for 4WP3 A2",
+  "license": "ISC",
+  "author": "Jeremy Nugara",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

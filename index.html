@@ -8,28 +8,51 @@
 <body>
     <h1>MET Museum Artworks</h1>
     <div id="input_form">
-        <h2>Search MET Museum collection</h2>
-        <form>
-            <label for="query">Search: </label>
-            <input type="text" id="query" name="query"><br>
-            
-            <label for="highlight">Permanent Collection?: </label>
-            <input type="checkbox" id="highlight" name="highlight"><br>
-            
-            <p>Choose the medium of the artwork: </p>
-            <label for="painting">Painting </label>
-            <input type="radio" id="painting" name="medium">
+        <h2>Search MET Museum Collection</h2>
 
-            <label for="ceramics">Ceramics </label>
-            <input type="radio" id="ceramics" name="medium">
+        <label for="query">Search: </label>
+        <input type="text" id="query" name="query"><br>
+        
+        <label for="highlight">Permanent Collection?: </label>
+        <input type="checkbox" id="highlight" name="highlight"><br>
+        
+        <p>Choose the medium of the artwork: </p>
+        <label for="painting">Painting </label>
+        <input type="radio" id="painting" name="medium">
 
-            <label for="sculpture">Sculpture </label>
-            <input type="radio" id="sculpture" name="medium">
+        <label for="ceramics">Ceramics </label>
+        <input type="radio" id="ceramics" name="medium">
 
-            <label for="textile">Textile </label>
-            <input type="radio" id="textile" name="medium">
-            
-        </form>
+        <label for="sculpture">Sculpture </label>
+        <input type="radio" id="sculpture" name="medium">
+
+        <label for="textile">Textile </label>
+        <input type="radio" id="textile" name="medium">
+        <br>
+        <button id="req">Submit Request</button>
+        
+        <div><span id="results"></span></div>
+        <script>
+            async function METRequest()
+            {
+                const id_value = document.getElementById("query").value;
+
+                const response = await fetch("/METRequest", 
+                {
+                    method: "POST",
+                    body: "hello",
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+                const data = await response.json();
+                const results = document.getElementById("results");
+                //results.innerHTML = data;
+            }
+
+            const makerequest = document.getElementById("req");
+            makerequest.addEventListener("click", METRequest);
+        </script>
     </div>
 </body>
 </html>

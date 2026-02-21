@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>MET Museum Artworks</title>
 </head>
 <body>
-    
+    <h1>MET Museum Artworks</h1>
+    <div id="input_form">
+        <h2>Search MET Museum collection</h2>
+        <form>
+            <label for="query">Search: </label>
+            <input type="text" id="query" name="query"><br>
+            
+            <label for="highlight">Permanent Collection?: </label>
+            <input type="checkbox" id="highlight" name="highlight"><br>
+            
+            <p>Choose the medium of the artwork: </p>
+            <label for="painting">Painting </label>
+            <input type="radio" id="painting" name="medium">
+
+            <label for="ceramics">Ceramics </label>
+            <input type="radio" id="ceramics" name="medium">
+
+            <label for="sculpture">Sculpture </label>
+            <input type="radio" id="sculpture" name="medium">
+
+            <label for="textile">Textile </label>
+            <input type="radio" id="textile" name="medium">
+            
+        </form>
+    </div>
 </body>
 </html>

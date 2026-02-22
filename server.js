@@ -19,7 +19,7 @@ app.post("/METRequest", async function(req,res){
     res.json(
       {
         "total": response.data.total,
-
+        "objectIDs": response.data.objectIDs
       }
     )
   

@@ -31,7 +31,8 @@
         <br>
         <button id="req">Submit Request</button>
         
-        <div><span id="results"></span></div>
+        <div><span id="total"></span></div>
+        <div><span id="objectIDs"></span></div>
         <script>
             async function METRequest()
             {   
@@ -47,8 +48,12 @@
                    }
                });
                 const data = await response.json();
-                const results = document.getElementById("results");
-                results.innerHTML = data.total;
+                const total = document.getElementById("total");
+                total.innerHTML = data.total;
+                const objectIDs = document.getElementById("objectIDs");
+                objectIDs.innerHTML = data.objectIDs;
+          
+                
           
             }
 

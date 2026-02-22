@@ -34,20 +34,17 @@
         <div><span id="results"></span></div>
         <script>
             async function METRequest()
-            {
+            {   
+                
                 const id_value = document.getElementById("query").value;
+                const response = await fetch("https://collectionapi.metmuseum.org/public/collection/v1/search?q=sunflowers",
+               {
+                   method: "GET",
 
-                const response = await fetch("/METRequest", 
-                {
-                    method: "POST",
-                    body: "hello",
-                    headers: {
-                        'Content-Type': 'application/json',
-                    }
-                });
+               });
                 const data = await response.json();
-                const results = document.getElementById("results");
-                //results.innerHTML = data;
+                console.log(data);
+          
             }
 
             const makerequest = document.getElementById("req");

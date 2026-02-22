@@ -37,7 +37,7 @@
             {   
                 
                 const id_value = document.getElementById("query").value;
-                const MET_data = {"q" : "sunflowers"};
+                const MET_data = {"q" : id_value};
                 const response = await fetch("/METRequest",
                {
                    method: "POST",

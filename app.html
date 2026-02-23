@@ -18,16 +18,16 @@
         
         <p>Choose the medium of the artwork: </p>
         <label for="painting">Painting </label>
-        <input type="radio" id="painting" name="medium">
+        <input type="radio" id="Painting" name="medium">
 
         <label for="ceramics">Ceramics </label>
-        <input type="radio" id="ceramics" name="medium">
+        <input type="radio" id="Ceramics" name="medium">
 
         <label for="sculpture">Sculpture </label>
-        <input type="radio" id="sculpture" name="medium">
+        <input type="radio" id="Sculpture" name="medium">
 
-        <label for="textile">Textile </label>
-        <input type="radio" id="textile" name="medium">
+        <label for="textile">Textiles </label>
+        <input type="radio" id="Textiles" name="medium">
         <br>
         <button id="req">Submit Request</button>
         
@@ -36,11 +36,17 @@
         <script>
             async function METRequest()
             {   
-                
                 const query_value = document.getElementById("query").value;
                 const highlight_value = document.getElementById("highlight").checked;
-                console.log(highlight_value);
-                const MET_data = {"q" : query_value, "isHighlight": highlight_value};
+                const mediums = document.getElementsByName("medium");
+                let medium_value = null;
+                for (let i = 0; i < mediums.length; i++){
+                    if (mediums[i].checked == true){
+                        medium_value = mediums[i].id;
+                    }
+                }
+                console.log(medium_value);
+                const MET_data = {"q" : query_value, "isHighlight": highlight_value, "medium": medium_value};
                 const response = await fetch("/METRequest",
                {
                    method: "POST",
@@ -53,7 +59,8 @@
                 const total = document.getElementById("total");
                 total.innerHTML = data.total;
                 const objectIDs = document.getElementById("objectIDs");
-                
+            
+            
             objectIDs.innerHTML = String(data.objectIDs[0]) +", " + String(data.objectIDs[1]) + ", " + String(data.objectIDs[2]);
           
                 

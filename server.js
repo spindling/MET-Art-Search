@@ -4,6 +4,10 @@ const app = express();
 
 app.use( express.json() );
 
+app.get("/styles.css", function (req,res){
+  res.sendFile( __dirname + "/styles.css")
+});
+
 app.get("/app", function(req,res) {
 
   res.sendFile( __dirname + "/app.html" );

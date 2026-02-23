@@ -29,32 +29,49 @@ body {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     
 }
-#input_form{
-    margin: 0.5%;
-    padding: 0.5%;
+#input_form {
+    margin: 1.0%;
+    padding: 1.0%;
+    min-width: 25%;
     float: left;
-}
-#search_results{
-    float: left;
+    border-style:hidden;
+
+
 }
 #display_object{
-    float:left;
+    margin: 1.0%;
+    padding: 1.0%;
+    min-width: 25%;
+    max-width: 50%;
+    float: left;
+    border-style: hidden;
+
+    
+}
+#search_results{
+    margin: 1.0%;
+    padding: 1.0%;
+    float: left;
+}
+#object_image{
+    max-width: 40%;
+    max-height: 40%;
 }
 #object_info{
     float:left;
 }
 .objectImage {
-    width: 50%;
-    height: 50%;
-    margin: 0.09%;
-    padding: 0.09%;
+    
+    margin: 0.5%;
+    padding: 0.5%;
+    
     
 }
 .inputLabel {
     margin: 0.1em;
     padding: 0.1em;
     height: 0.9em;
-    width: 5em;
+    width: 10em;
     float:left;
 }
 .inputBox {

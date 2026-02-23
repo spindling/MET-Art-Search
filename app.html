@@ -14,7 +14,7 @@
     <div id="input_form">
         <h2>Search MET Museum Collection</h2>
 
-        <label for="query" class="inputLabel">Search: </label>
+        <label for="query" class="inputLabel">Search (e.g. artist, title, keywords): </label>
         <input class="inputBox" type="text" id="query" name="query"><br><br>
 
         <label for="highlight" class="inputLabel">Permanent Collection?: </label>
@@ -32,8 +32,9 @@
 
         <label for="textile" class="radioLabel">Textiles </label>
         <input type="radio" class="radioCheck" id="Textiles" name="medium"><br><br>
-        <button id="searchrequest" class="submitButton">Submit Request</button><br><br>
-
+        <button id="searchrequest" class="submitButton">Submit Request</button>
+        <br><br><br>
+        <hr>
         <div id="search_results">
             <h3>Results</h3>
             <div id="total"></div>
@@ -43,21 +44,23 @@
             </div>
         </div>
     </div>
-
+    
     <div id="display_object">
         <h2>Display Object Info</h2>
     
-        <label for="objectID" class="inputLabel">Enter Object ID: </label><br>
+        <label for="objectID" class="inputLabel">Enter Object ID: </label>
     
         <input type="text" class="inputBox" id="objectID" name="objectID"><br><br>
         <button id="objectrequest" class="submitButton">Get Info</button>
-    
+        <br><br><br>
+        <hr>
+        <h3>Results</h3>
         <div id="object_info">
             <div id="object_title"></div>
             <div id="object_artist"></div>
             <div id="object_period"></div>
             <div id="object_bio"></div>
-            <div id="object_medium"></div>
+            <div id="object_medium"></div><br>
             <div id="object_image"></div>
         </div>
     </div>
@@ -113,15 +116,14 @@
 
             )
             const data = await response.json();
-            console.log(data);
             const object_title = document.getElementById("object_title");
-            object_title.innerHTML = "Title: " + data.title;
+            object_title.innerHTML = "<b>Title:</b> " + data.title;
             const object_artist = document.getElementById("object_artist");
-            object_artist.innerHTML = "Artist: " + data.artist;
+            object_artist.innerHTML = "<b>Artist</b>: " + data.artist;
             const object_bio = document.getElementById("object_bio");
-            object_bio.innerHTML = "Bio: " + data.bio;
+            object_bio.innerHTML = "<b>Bio</b>: " + data.bio;
             const object_medium = document.getElementById("object_medium");
-            object_medium.innerHTML = "Medium: " + data.medium;
+            object_medium.innerHTML = "<b>Medium</b>: " + data.medium;
             const object_image = document.getElementById("object_image");
             object_image.innerHTML = "";
             const image_render = document.createElement("img");

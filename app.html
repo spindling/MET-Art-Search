@@ -29,7 +29,7 @@
         <label for="textile">Textiles </label>
         <input type="radio" id="Textiles" name="medium">
         <br>
-        <button id="req">Submit Request</button>
+        <button id="searchrequest">Submit Request</button>
         
         <h3>Results</h3>
         <div><span id="total"></span></div>
@@ -41,7 +41,9 @@
         <h2>Display MET Museum Artwork by Object ID</h2>
         <div id="object_display"></div>
         <label for="objectID">Enter Object ID: </label>
+       
         <input type="text" id="objectID" name="objectID"><br>
+        <button id="objectrequest">Get Info</button>
         
         <script>
             async function SearchRequest() {
@@ -77,9 +79,16 @@
                 }
 
             }
-            const makerequest = document.getElementById("req");
-            makerequest.addEventListener("click", SearchRequest);
+            const search_request = document.getElementById("searchrequest");
+            search_request.addEventListener("click", SearchRequest);
             
+            async function ObjectRequest()
+            {
+                const objectID_value = document.getElementById("objectID").value;
+                console.log(objectID_value);
+            }
+            const object_request = document.getElementById("objectrequest");
+            object_request.addEventListener("click", ObjectRequest);
             
 
         </script>

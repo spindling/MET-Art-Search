@@ -44,6 +44,7 @@
        
         <input type="text" id="objectID" name="objectID"><br>
         <button id="objectrequest">Get Info</button>
+        <div><span id="object_title"></span></div>
         
         <script>
             async function SearchRequest() {
@@ -77,6 +78,7 @@
                     listItem.textContent = data.objectIDs[i];
                     object_list.appendChild(listItem);
                 }
+                
 
             }
             const search_request = document.getElementById("searchrequest");
@@ -85,7 +87,22 @@
             async function ObjectRequest()
             {
                 const objectID_value = document.getElementById("objectID").value;
-                console.log(objectID_value);
+                const object_data = {"objectID": objectID_value};
+                const response = await fetch("/ObjectRequest",
+                    {
+                        method: "POST",
+                        body: JSON.stringify(object_data),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    }
+                    
+                )
+                const data = await response.json();
+                console.log(data);
+                const object_title = document.getElementById("object_title");
+                object_title.innerHTML = "Title: " + data.title;
+
             }
             const object_request = document.getElementById("objectrequest");
             object_request.addEventListener("click", ObjectRequest);

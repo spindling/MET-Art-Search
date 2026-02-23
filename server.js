@@ -28,6 +28,21 @@ app.post("/SearchRequest", async function(req,res){
 
 });
 
+app.post("/ObjectRequest", async function(req,res){
+
+  const response = await axios.get("https://collectionapi.metmuseum.org/public/collection/v1/objects",
+    {params: {objectID: req.body.objectID}});
+  
+    res.json(
+      {
+        "title": response.data.title,
+
+      }
+    )
+  
+
+});
+
 app.listen(3000, function() {
     console.log("Server is listening on port 3000...");
 });

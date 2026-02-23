@@ -10,3 +10,40 @@ h2{
 ul {
     list-style-type:square;
 }
+html,
+body {
+    height: 100%;
+    margin: 0.5em;
+    padding: 0.5em;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+.objectImage {
+    width: 50%;
+    height: 50%;
+    margin: 0.09%;
+    padding: 0.09%;
+    
+}
+.inputLabel {
+    margin: 0.5em;
+    padding: 0.1em;
+    float:left;
+    height: 0.9em;
+    width: 10em;
+}
+.inputBox {
+    margin: 0.5em;
+    padding: 0.2em;
+    float: right;
+}
+
+.submitButton {
+    margin: 0.1em;
+    padding: 0.9em;
+    float: right;
+    border-radius: 10%;
+    background-color: rgb(247, 255, 213);
+
+    
+}

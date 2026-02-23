@@ -12,26 +12,26 @@
     <div id="input_form">
         <h2>Search MET Museum Collection</h2>
 
-        <label for="query">Search: </label>
-        <input type="text" id="query" name="query"><br>
+        <label for="query" class="inputLabel">Search: </label>
+        <input class="inputBox" type="text" id="query" name="query"><br>
         
-        <label for="highlight">Permanent Collection?: </label>
-        <input type="checkbox" id="highlight" name="highlight"><br>
+        <label for="highlight" class="inputLabel">Permanent Collection?: </label>
+        <input type="checkbox" class="inputBox" id="highlight" name="highlight"><br>
         
         <p>Choose the medium of the artwork: </p>
-        <label for="painting">Painting </label>
-        <input type="radio" id="Paintings" name="medium">
+        <label for="painting" class="radioLabel">Painting </label>
+        <input type="radio" class="radioCheck" id="Paintings" name="medium">
 
-        <label for="ceramics">Ceramics </label>
-        <input type="radio" id="Ceramics" name="medium">
+        <label for="ceramics" class="radioLabel">Ceramics </label>
+        <input type="radio" class="radioCheck" id="Ceramics" name="medium">
 
-        <label for="sculpture">Sculpture </label>
-        <input type="radio" id="Sculpture" name="medium">
+        <label for="sculpture" class="radioLabel">Sculpture </label>
+        <input type="radio" class="radioCheck" id="Sculpture" name="medium">
 
-        <label for="textile">Textiles </label>
-        <input type="radio" id="Textiles" name="medium">
+        <label for="textile" class="radioLabel">Textiles </label>
+        <input type="radio" class="radioCheck" id="Textiles" name="medium">
         <br>
-        <button id="searchrequest">Submit Request</button>
+        <button id="searchrequest" class="submitButton">Submit Request</button>
         
         <h3>Results</h3>
         <div><span id="total"></span></div>
@@ -42,10 +42,11 @@
         
         <h2>Display MET Museum Artwork by Object ID</h2>
         <div id="object_display"></div>
-        <label for="objectID">Enter Object ID: </label>
+        <label for="objectID" class="inputLabel">Enter Object ID: </label>
        
-        <input type="text" id="objectID" name="objectID"><br>
-        <button id="objectrequest">Get Info</button>
+        <input type="text" class="inputBox" id="objectID" name="objectID"><br>
+        <button id="objectrequest" class="submitButton">Get Info</button>
+        
         <div><span id="object_title"></span></div>
         <div><span id="object_artist"></span></div>
         <div><span id="object_period"></span></div>
@@ -117,6 +118,7 @@
                 const object_image = document.getElementById("object_image");
                 object_image.innerHTML = "";
                 const image_render = document.createElement("img");
+                image_render.classList.add("objectImage")
                 image_render.src = data.image;
                 object_image.appendChild(image_render);
             }

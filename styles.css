@@ -41,7 +41,7 @@ body {
 #display_object{
     margin: 1.0%;
     padding: 1.0%;
-    min-width: 25%;
+    min-width: 500px;
     max-width: 50%;
     float: left;
     border-style: hidden;
@@ -53,19 +53,15 @@ body {
     padding: 1.0%;
     float: left;
 }
-#object_image{
-    max-width: 40%;
-    max-height: 40%;
-}
+
 #object_info{
     float:left;
 }
 .objectImage {
-    
     margin: 0.5%;
     padding: 0.5%;
-    
-    
+    max-width: 100%;
+    max-height: 100%;
 }
 .inputLabel {
     margin: 0.1em;

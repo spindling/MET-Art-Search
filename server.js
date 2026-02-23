@@ -34,7 +34,10 @@ app.post("/ObjectRequest", async function(req,res){
     res.json(
       {
         "title": response.data.title,
-  
+        "artist": response.data.artistDisplayName,
+        "bio": response.data.artistDisplayBio,
+        "medium": response.data.medium,
+        "image": response.data.primaryImage
         
       }
     )

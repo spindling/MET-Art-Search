@@ -45,7 +45,11 @@
         <input type="text" id="objectID" name="objectID"><br>
         <button id="objectrequest">Get Info</button>
         <div><span id="object_title"></span></div>
-        
+        <div><span id="object_artist"></span></div>
+        <div><span id="object_period"></span></div>
+        <div><span id="object_bio"></span></div>
+        <div><span id="object_medium"></span></div>
+        <div><span id="object_image"></span></div>
         <script>
             async function SearchRequest() {
                 const query_value = document.getElementById("query").value;
@@ -102,7 +106,17 @@
                 console.log(data);
                 const object_title = document.getElementById("object_title");
                 object_title.innerHTML = "Title: " + data.title;
-
+                const object_artist = document.getElementById("object_artist");
+                object_artist.innerHTML = "Artist: " + data.artist;
+                const object_bio = document.getElementById("object_bio");
+                object_bio.innerHTML = "Bio: " + data.bio;
+                const object_medium = document.getElementById("object_medium");
+                object_medium.innerHTML = "Medium: " + data.medium;
+                const object_image = document.getElementById("object_image");
+                object_image.innerHTML = "";
+                const image_render = document.createElement("img");
+                image_render.src = data.image;
+                object_image.appendChild(image_render);
             }
             const object_request = document.getElementById("objectrequest");
             object_request.addEventListener("click", ObjectRequest);

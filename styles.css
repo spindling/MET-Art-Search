@@ -7,6 +7,17 @@ h2{
     font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
+h3{
+    font-size: 1.5em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+h4{
+    font-size: 1.2em;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
 ul {
     list-style-type:square;
 }
@@ -18,6 +29,20 @@ body {
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     
 }
+#input_form{
+    margin: 0.5%;
+    padding: 0.5%;
+    float: left;
+}
+#search_results{
+    float: left;
+}
+#display_object{
+    float:left;
+}
+#object_info{
+    float:left;
+}
 .objectImage {
     width: 50%;
     height: 50%;
@@ -26,21 +51,40 @@ body {
     
 }
 .inputLabel {
-    margin: 0.5em;
+    margin: 0.1em;
     padding: 0.1em;
-    float:left;
     height: 0.9em;
-    width: 10em;
+    width: 5em;
+    float:left;
 }
 .inputBox {
+    margin: 0.1em;
+    padding: 0.1em;
+    height: 0.9em;
+    float: right;
+}
+.inputCheck{
     margin: 0.5em;
-    padding: 0.2em;
+    padding: 0.5em;
+    float: right;
+}
+.radioLabel{
+    margin: 0.1em;
+    padding: 0.1em;
+    float:left;
+    height: 0.1em;
+    width: 10em;
+}
+.radioCheck {
+    margin: 0.1em;
+    padding: 0.1em;
     float: right;
 }
 
 .submitButton {
-    margin: 0.1em;
-    padding: 0.9em;
+    margin: 0.5em;
+    padding: 0.5em;
+    height: 2.5em;
     float: right;
     border-radius: 10%;
     background-color: rgb(247, 255, 213);

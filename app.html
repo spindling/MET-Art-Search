@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,126 +8,133 @@
     <link rel="stylesheet" href="/styles.css">
 
 </head>
+
 <body>
     <h1>MET Museum Artworks</h1>
     <div id="input_form">
         <h2>Search MET Museum Collection</h2>
 
         <label for="query" class="inputLabel">Search: </label>
-        <input class="inputBox" type="text" id="query" name="query"><br>
-        
+        <input class="inputBox" type="text" id="query" name="query"><br><br>
+
         <label for="highlight" class="inputLabel">Permanent Collection?: </label>
-        <input type="checkbox" class="inputBox" id="highlight" name="highlight"><br>
-        
+        <input type="checkbox" class="inputCheck" id="highlight" name="highlight"><br><br>
+
         <p>Choose the medium of the artwork: </p>
         <label for="painting" class="radioLabel">Painting </label>
-        <input type="radio" class="radioCheck" id="Paintings" name="medium">
+        <input type="radio" class="radioCheck" id="Paintings" name="medium"><br>
 
         <label for="ceramics" class="radioLabel">Ceramics </label>
-        <input type="radio" class="radioCheck" id="Ceramics" name="medium">
+        <input type="radio" class="radioCheck" id="Ceramics" name="medium"><br>
 
         <label for="sculpture" class="radioLabel">Sculpture </label>
-        <input type="radio" class="radioCheck" id="Sculpture" name="medium">
+        <input type="radio" class="radioCheck" id="Sculpture" name="medium"><br>
 
         <label for="textile" class="radioLabel">Textiles </label>
-        <input type="radio" class="radioCheck" id="Textiles" name="medium">
-        <br>
-        <button id="searchrequest" class="submitButton">Submit Request</button>
-        
-        <h3>Results</h3>
-        <div><span id="total"></span></div>
-        <div><span id="objectIDs">
-            <h4>First 5 Object IDs: </h4>
-            <ul id="objectIDList"></ul>
-        </span></div>
-        
-        <h2>Display MET Museum Artwork by Object ID</h2>
-        <div id="object_display"></div>
-        <label for="objectID" class="inputLabel">Enter Object ID: </label>
-       
-        <input type="text" class="inputBox" id="objectID" name="objectID"><br>
+        <input type="radio" class="radioCheck" id="Textiles" name="medium"><br><br>
+        <button id="searchrequest" class="submitButton">Submit Request</button><br><br>
+
+        <div id="search_results">
+            <h3>Results</h3>
+            <div id="total"></div>
+            <div id="objectIDs">
+                <h4>First 5 Object IDs: </h4>
+                <ul id="objectIDList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="display_object">
+        <h2>Display Object Info</h2>
+    
+        <label for="objectID" class="inputLabel">Enter Object ID: </label><br>
+    
+        <input type="text" class="inputBox" id="objectID" name="objectID"><br><br>
         <button id="objectrequest" class="submitButton">Get Info</button>
-        
-        <div><span id="object_title"></span></div>
-        <div><span id="object_artist"></span></div>
-        <div><span id="object_period"></span></div>
-        <div><span id="object_bio"></span></div>
-        <div><span id="object_medium"></span></div>
-        <div><span id="object_image"></span></div>
-        <script>
-            async function SearchRequest() {
-                const query_value = document.getElementById("query").value;
-                const highlight_value = document.getElementById("highlight").checked;
-                const mediums = document.getElementsByName("medium");
-                let medium_value = null;
-                for (let i = 0; i < mediums.length; i++) {
-                    if (mediums[i].checked == true) {
-                        medium_value = mediums[i].id;
+    
+        <div id="object_info">
+            <div id="object_title"></div>
+            <div id="object_artist"></div>
+            <div id="object_period"></div>
+            <div id="object_bio"></div>
+            <div id="object_medium"></div>
+            <div id="object_image"></div>
+        </div>
+    </div>
+    <script>
+        async function SearchRequest() {
+            const query_value = document.getElementById("query").value;
+            const highlight_value = document.getElementById("highlight").checked;
+            const mediums = document.getElementsByName("medium");
+            let medium_value = null;
+            for (let i = 0; i < mediums.length; i++) {
+                if (mediums[i].checked == true) {
+                    medium_value = mediums[i].id;
+                }
+            }
+            const MET_data = { "q": query_value, "isHighlight": highlight_value, "medium": medium_value };
+            const response = await fetch("/SearchRequest",
+                {
+                    method: "POST",
+                    body: JSON.stringify(MET_data),
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+            const data = await response.json();
+            //display data returned from API onto webpage
+            const total = document.getElementById("total");
+            total.innerHTML = "Total results: " + data.total;
+            const limit = 5;
+            const object_list = document.getElementById("objectIDList");
+            object_list.innerHTML = "";
+            for (let i = 0; i < limit; i++) {
+                const listItem = document.createElement("li");
+                listItem.textContent = data.objectIDs[i];
+                object_list.appendChild(listItem);
+            }
+
+
+        }
+        const search_request = document.getElementById("searchrequest");
+        search_request.addEventListener("click", SearchRequest);
+
+        async function ObjectRequest() {
+            const objectID_value = document.getElementById("objectID").value;
+            const object_data = { "objectID": objectID_value };
+            const response = await fetch("/ObjectRequest",
+                {
+                    method: "POST",
+                    body: JSON.stringify(object_data),
+                    headers: {
+                        'Content-Type': 'application/json',
                     }
                 }
-                const MET_data = { "q": query_value, "isHighlight": highlight_value, "medium": medium_value };
-                const response = await fetch("/SearchRequest",
-                    {
-                        method: "POST",
-                        body: JSON.stringify(MET_data),
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
-                    });
-                const data = await response.json();
-                //display data returned from API onto webpage
-                const total = document.getElementById("total");
-                total.innerHTML = "Total results: " + data.total;
-                const limit = 5;
-                const object_list = document.getElementById("objectIDList");
-                object_list.innerHTML = "";
-                for (let i = 0; i < limit; i++) {
-                    const listItem = document.createElement("li");
-                    listItem.textContent = data.objectIDs[i];
-                    object_list.appendChild(listItem);
-                }
-                
 
-            }
-            const search_request = document.getElementById("searchrequest");
-            search_request.addEventListener("click", SearchRequest);
-            
-            async function ObjectRequest()
-            {
-                const objectID_value = document.getElementById("objectID").value;
-                const object_data = {"objectID": objectID_value};
-                const response = await fetch("/ObjectRequest",
-                    {
-                        method: "POST",
-                        body: JSON.stringify(object_data),
-                        headers: {
-                            'Content-Type': 'application/json',
-                        }
-                    }
-                    
-                )
-                const data = await response.json();
-                console.log(data);
-                const object_title = document.getElementById("object_title");
-                object_title.innerHTML = "Title: " + data.title;
-                const object_artist = document.getElementById("object_artist");
-                object_artist.innerHTML = "Artist: " + data.artist;
-                const object_bio = document.getElementById("object_bio");
-                object_bio.innerHTML = "Bio: " + data.bio;
-                const object_medium = document.getElementById("object_medium");
-                object_medium.innerHTML = "Medium: " + data.medium;
-                const object_image = document.getElementById("object_image");
-                object_image.innerHTML = "";
-                const image_render = document.createElement("img");
-                image_render.classList.add("objectImage")
-                image_render.src = data.image;
-                object_image.appendChild(image_render);
-            }
-            const object_request = document.getElementById("objectrequest");
-            object_request.addEventListener("click", ObjectRequest);
-            
+            )
+            const data = await response.json();
+            console.log(data);
+            const object_title = document.getElementById("object_title");
+            object_title.innerHTML = "Title: " + data.title;
+            const object_artist = document.getElementById("object_artist");
+            object_artist.innerHTML = "Artist: " + data.artist;
+            const object_bio = document.getElementById("object_bio");
+            object_bio.innerHTML = "Bio: " + data.bio;
+            const object_medium = document.getElementById("object_medium");
+            object_medium.innerHTML = "Medium: " + data.medium;
+            const object_image = document.getElementById("object_image");
+            object_image.innerHTML = "";
+            const image_render = document.createElement("img");
+            image_render.classList.add("objectImage")
+            image_render.src = data.image;
+            object_image.appendChild(image_render);
+        }
+        const object_request = document.getElementById("objectrequest");
+        object_request.addEventListener("click", ObjectRequest);
 
-        </script>
+
+    </script>
     </div>
 </body>
+
 </html>

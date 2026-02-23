@@ -37,8 +37,10 @@
             async function METRequest()
             {   
                 
-                const id_value = document.getElementById("query").value;
-                const MET_data = {"q" : id_value};
+                const query_value = document.getElementById("query").value;
+                const highlight_value = document.getElementById("highlight").value;
+                console.log(highlight_value);
+                const MET_data = {"q" : query_value, "isHighlight": highlight_value};
                 const response = await fetch("/METRequest",
                {
                    method: "POST",
@@ -51,7 +53,8 @@
                 const total = document.getElementById("total");
                 total.innerHTML = data.total;
                 const objectIDs = document.getElementById("objectIDs");
-                objectIDs.innerHTML = data.objectIDs;
+                
+            objectIDs.innerHTML = String(data.objectIDs[0]) +", " + String(data.objectIDs[1]) + ", " + String(data.objectIDs[2]);
           
                 
           

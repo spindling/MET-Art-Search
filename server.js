@@ -11,7 +11,7 @@ app.get("/app", function(req,res) {
 });
 
 
-app.post("/METRequest", async function(req,res){
+app.post("/SearchRequest", async function(req,res){
 
   const response = await axios.get("https://collectionapi.metmuseum.org/public/collection/v1/search",
     {params: {q: req.body.q, isHighlight: req.body.isHighlight, medium: req.body.medium}});

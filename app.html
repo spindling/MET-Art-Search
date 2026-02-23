@@ -37,48 +37,51 @@
             <h4>First 5 Object IDs: </h4>
             <ul id="objectIDList"></ul>
         </span></div>
-
+        
+        <h2>Display MET Museum Artwork by Object ID</h2>
         <div id="object_display"></div>
-
+        <label for="objectID">Enter Object ID: </label>
+        <input type="text" id="objectID" name="objectID"><br>
+        
         <script>
-            async function SearchRequest()
-            {   
+            async function SearchRequest() {
                 const query_value = document.getElementById("query").value;
                 const highlight_value = document.getElementById("highlight").checked;
                 const mediums = document.getElementsByName("medium");
                 let medium_value = null;
-                for (let i = 0; i < mediums.length; i++){
-                    if (mediums[i].checked == true){
+                for (let i = 0; i < mediums.length; i++) {
+                    if (mediums[i].checked == true) {
                         medium_value = mediums[i].id;
                     }
                 }
-                const MET_data = {"q" : query_value, "isHighlight": highlight_value, "medium": medium_value};
+                const MET_data = { "q": query_value, "isHighlight": highlight_value, "medium": medium_value };
                 const response = await fetch("/SearchRequest",
-               {
-                   method: "POST",
-                   body: JSON.stringify(MET_data),
-                   headers: {
-                    'Content-Type': 'application/json',
-                   }
-               });
+                    {
+                        method: "POST",
+                        body: JSON.stringify(MET_data),
+                        headers: {
+                            'Content-Type': 'application/json',
+                        }
+                    });
                 const data = await response.json();
+                //display data returned from API onto webpage
                 const total = document.getElementById("total");
                 total.innerHTML = "Total results: " + data.total;
                 const limit = 5;
                 const object_list = document.getElementById("objectIDList");
                 object_list.innerHTML = "";
-                for (let i = 0; i < limit; i++)
-                {
+                for (let i = 0; i < limit; i++) {
                     const listItem = document.createElement("li");
                     listItem.textContent = data.objectIDs[i];
                     object_list.appendChild(listItem);
                 }
-   
+
             }
             const makerequest = document.getElementById("req");
             makerequest.addEventListener("click", SearchRequest);
             
             
+
         </script>
     </div>
 </body>

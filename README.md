@@ -1,1 +1,2 @@
-# Web application that implements NodeJS backend, front-end incorporating AJAX, and third-party Web API
+# Web application 
+Implements NodeJS backend, front-end incorporating AJAX, and third-party Web API

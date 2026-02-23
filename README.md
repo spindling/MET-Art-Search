@@ -12,10 +12,11 @@ Choose the artwork medium and click "Submit Request".
 The app will display the first 5 results and the number of total results.
 
 e.g.
-Search: Vincent Van Gogh
-Permanent Collection?: [x]
-Choose the medium of the artwork: Painting
--> Results:
+
+Search: Vincent Van Gogh  
+Permanent Collection?: [x]  
+Choose the medium of the artwork: Painting  
+-> Results:  
 ```
 Total results: 24
 First 5 Object IDs:
@@ -29,13 +30,13 @@ First 5 Object IDs:
 ```
 
 ### Display information for an object:
-Enter the Object ID (obtained above) and click "Get Info".
-e.g Object ID: 436535
--> Results:
+Enter the Object ID (obtained above) and click "Get Info".  
+e.g Object ID: 436535  
+-> Results:  
 ```
 Title: Wheat Field with Cypresses
 Artist: Vincent van Gogh
 Bio: Dutch, Zundert 1853–1890 Auvers-sur-Oise
 Medium: Oil on canvas
 ```
-An available image of the artwork is also displayed.
+An available image of the artwork is also displayed.  

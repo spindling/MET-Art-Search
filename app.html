@@ -38,7 +38,7 @@
             {   
                 
                 const query_value = document.getElementById("query").value;
-                const highlight_value = document.getElementById("highlight").value;
+                const highlight_value = document.getElementById("highlight").checked;
                 console.log(highlight_value);
                 const MET_data = {"q" : query_value, "isHighlight": highlight_value};
                 const response = await fetch("/METRequest",

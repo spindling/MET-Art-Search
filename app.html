@@ -31,8 +31,12 @@
         <br>
         <button id="req">Submit Request</button>
         
+        <h3>Results</h3>
         <div><span id="total"></span></div>
-        <div><span id="objectIDs"></span></div>
+        <div><span id="objectIDs">
+            <ul id="objectIDList"></ul>
+        </span></div>
+
         <script>
             async function METRequest()
             {   
@@ -45,7 +49,6 @@
                         medium_value = mediums[i].id;
                     }
                 }
-                console.log(medium_value);
                 const MET_data = {"q" : query_value, "isHighlight": highlight_value, "medium": medium_value};
                 const response = await fetch("/METRequest",
                {
@@ -57,11 +60,20 @@
                });
                 const data = await response.json();
                 const total = document.getElementById("total");
-                total.innerHTML = data.total;
-                const objectIDs = document.getElementById("objectIDs");
+                total.innerHTML = "Total results: " + data.total;
+                const limit = 5;
+                const object_list = document.getElementById("objectIDList");
+                object_list.innerHTML = "";
+                for (let i = 0; i < limit; i++)
+                {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = data.objectIDs[i];
+                    object_list.appendChild(listItem);
+                }
+                //const objectIDs = document.getElementById("objectIDs");
+                //objectIDList.innerHTML.append
             
-            
-            objectIDs.innerHTML = String(data.objectIDs[0]) +", " + String(data.objectIDs[1]) + ", " + String(data.objectIDs[2]);
+            //objectIDs.innerHTML = String(data.objectIDs[0]) +", " + String(data.objectIDs[1]) + ", " + String//(data.objectIDs[2]);
           
                 
           

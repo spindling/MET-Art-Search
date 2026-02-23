@@ -29,8 +29,7 @@ app.post("/SearchRequest", async function(req,res){
 
 app.post("/ObjectRequest", async function(req,res){
 
-  const response = await axios.get("https://collectionapi.metmuseum.org/public/collection/v1/objects/437112")
-    //{params: {objectID: req.body.objectID}});
+  const response = await axios.get("https://collectionapi.metmuseum.org/public/collection/v1/objects/" + req.body.objectID)
   
     res.json(
       {

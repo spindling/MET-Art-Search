@@ -65,6 +65,7 @@
         </div>
     </div>
     <script>
+        //Main input form that submits user input to the MET API search endpoints with 3 different parameters
         async function SearchRequest() {
             const query_value = document.getElementById("query").value;
             const highlight_value = document.getElementById("highlight").checked;
@@ -85,7 +86,7 @@
                     }
                 });
             const data = await response.json();
-            //display data returned from API onto webpage
+            //Format and display data returned from search API onto webpage
             const total = document.getElementById("total");
             total.innerHTML = "Total results: " + data.total;
             const limit = 5;
@@ -102,6 +103,7 @@
         const search_request = document.getElementById("searchrequest");
         search_request.addEventListener("click", SearchRequest);
 
+        //Secondary input form to allow for displaying information related to Object IDs
         async function ObjectRequest() {
             const objectID_value = document.getElementById("objectID").value;
             const object_data = { "objectID": objectID_value };
@@ -116,6 +118,7 @@
 
             )
             const data = await response.json();
+            //Format and display information retrieved about object ID submitted by user
             const object_title = document.getElementById("object_title");
             object_title.innerHTML = "<b>Title:</b> " + data.title;
             const object_artist = document.getElementById("object_artist");

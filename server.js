@@ -4,6 +4,7 @@ const app = express();
 
 app.use( express.json() );
 
+
 app.get("/styles.css", function (req,res){
   res.sendFile( __dirname + "/styles.css")
 });
@@ -14,7 +15,7 @@ app.get("/app", function(req,res) {
 
 });
 
-
+//Send main API request with 3 parameters, receive and label response
 app.post("/SearchRequest", async function(req,res){
 
   const response = await axios.get("https://collectionapi.metmuseum.org/public/collection/v1/search",
